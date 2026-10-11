@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- SEO & Open Graph -->
+<title>Azaria Jonathan Manuela — Software Engineer & Web Developer</title>
+<meta name="description" content="Portfolio Azaria Jonathan Manuela, mahasiswa PTIK UNNES yang fokus pada web development, UI/UX, AI, dan database.">
+<meta name="theme-color" content="#050816">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Azaria Jonathan Manuela — Portfolio">
+<meta property="og:description" content="Mahasiswa PTIK UNNES, calon Software Engineer dan Full Stack Web Developer.">
+<meta property="og:image" content="assets/images/og.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23050816'/%3E%3Ctext x='16' y='22' font-size='15' font-weight='700' text-anchor='middle' fill='%2300E5FF'%3EAJ%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Layer global: loading, transisi, progress, kursor, glow, partikel -->
+<div id="loader"><div class="logo">AJ</div><div class="bar"><i></i></div><span id="pct">0%</span></div>
+<div id="curtain"></div><div id="progress"></div><div id="cursor"><svg viewBox="0 0 24 24"><defs><linearGradient id="cg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#00E5FF"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs><path d="M4 3v17l4.6-4.2 3 6.4 2.8-1.3-3-6.3H19z" fill="url(#cg)" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg></div><div id="glow" class="glow"></div>
+<canvas id="bg" aria-hidden="true"></canvas>
+
+<header class="nav glass">
+  <a class="brand" href="#home">AJ<span>.</span></a>
+  <nav aria-label="Navigasi utama"><a href="#about">Tentang</a><a href="#skills">Skill</a><a href="#projects">Proyek</a><a href="#contact">Kontak</a></nav>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="home" class="hero">
+  <i class="orb"></i>
+  <div class="wrap">
+    <p class="eyebrow">Halo, saya</p>
+    <h1 class="name"><span class="line">AZARIA</span><span class="line">JONATHAN</span><span class="line">MANUELA</span></h1>
+    <p class="typing"><span id="typed"></span><b class="caret"></b></p>
+    <p class="lead">Mahasiswa PTIK UNNES yang membangun web yang cepat, rapi, dan terasa hidup.</p>
+    <div class="cta">
+      <a class="btn primary magnetic" href="#projects">Lihat Proyek</a>
+      <a class="btn ghost magnetic" href="assets/cv.pdf" download>Unduh CV</a>
+    </div>
+    <div class="scroll">Scroll</div>
+  </div>
+</section>
+
+<!-- TENTANG -->
+<section id="about"><div class="wrap about">
+  <div class="photo reveal">
+    <img src="assets/images/profile.jpg" alt="Foto Azaria Jonathan Manuela" loading="lazy" onerror="this.remove()"><span>AJ</span>
+  </div>
+  <div>
+    <h2 class="title"><span class="split">Lebih dari sekadar kode</span></h2>
+    <p class="reveal">Saya Azaria Jonathan Manuela, mahasiswa Pendidikan Teknik Informatika dan Komputer (PTIK) Universitas Negeri Semarang. Saya suka mengubah ide menjadi produk web yang rapi, cepat, dan nyaman dipakai.</p>
+    <p class="reveal">Fokus saya ada di web development, UI/UX, database, dan kecerdasan buatan, dengan target menjadi Software Engineer dan Full Stack Web Developer.</p>
+    <div class="chips reveal"><span>🎧 Musik</span><span>🎬 Film</span><span>⚽ Game sepak bola FC dan eFootball</span><span>📺 Nonton bola</span></div>
+    <div class="stats">
+      <div class="glass"><b data-count="5">0</b><small>Project</small></div>
+      <div class="glass"><b data-count="10">0</b><small>Skill</small></div>
+      <div class="glass"><b data-count="3">0</b><small>Semester</small></div>
+      <div class="glass"><b data-count="1">0</b><small>Tahun belajar</small></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- SKILLS (diisi dari data di script.js) -->
+<section id="skills"><div class="wrap">
+  <h2 class="title"><span class="split">Tech yang saya pakai</span></h2>
+  <div class="grid" id="skill-list"></div>
+</div></section>
+
+<!-- LAYANAN -->
+<section id="services"><div class="wrap">
+  <h2 class="title"><span class="split">Yang bisa saya kerjakan</span></h2>
+  <div class="grid">
+    <article class="card glass reveal"><h3>Web Development</h3><p>Website dinamis dari front-end sampai back-end.</p></article>
+    <article class="card glass reveal"><h3>UI Design</h3><p>Antarmuka bersih dan konsisten yang mengutamakan pengguna.</p></article>
+    <article class="card glass reveal"><h3>Responsive Website</h3><p>Tampil pas di desktop, tablet, dan ponsel.</p></article>
+    <article class="card glass reveal"><h3>Database Design</h3><p>ERD dan skema MySQL yang efisien dan mudah dikembangkan.</p></article>
+    <article class="card glass reveal"><h3>Frontend Development</h3><p>Interaksi dan animasi halus dengan JavaScript modern.</p></article>
+  </div>
+</div></section>
+
+<!-- PROYEK (diisi dari data di script.js) -->
+<section id="projects"><div class="wrap">
+  <h2 class="title"><span class="split">Proyek pilihan</span></h2>
+  <div class="proj" id="work"></div>
+</div></section>
+
+<!-- PENGALAMAN: PKL (ceritakan tugas aslimu di paragraf ini) -->
+<section id="pkl"><div class="wrap about rev">
+  <div>
+    <h2 class="title"><span class="split">PKL di Telkom Akses Jepara</span></h2>
+    <p class="reveal">Pada Januari sampai April 2025, selama 4 bulan, saya menjalani Praktik Kerja Lapangan di PT Telkom Akses Jepara. Di sana saya belajar bekerja di lingkungan perusahaan telekomunikasi dan membiasakan diri dengan ritme kerja yang disiplin.</p>
+    <div class="chips reveal"><span>4 bulan</span><span>6 Jan – 29 Apr 2025</span><span>Bersertifikat</span></div>
+    <a class="btn ghost reveal" href="#certs">Lihat sertifikat</a>
+  </div>
+  <div class="photo reveal"><img src="assets/images/pkl-telkom.jpg" alt="Azaria Jonathan Manuela saat PKL di PT Telkom Akses Jepara" loading="lazy"></div>
+</div></section>
+
+<!-- TIMELINE -->
+<section id="journey"><div class="wrap">
+  <h2 class="title"><span class="split">Perjalanan saya</span></h2>
+  <div class="tl">
+    <div class="glass reveal"><b>Jan – Apr 2025</b><h3>PKL di Telkom Akses Jepara</h3><p>Praktik kerja lapangan selama 4 bulan di PT Telkom Akses Jepara.</p></div>
+    <div class="glass reveal"><b>2025</b><h3>Masuk PTIK UNNES</h3><p>Memulai kuliah, mengenal dasar pemrograman, dan mengikuti Pelatihan Manajemen Kepemimpinan Teknik Elektro (Okt 2025).</p></div>
+    <div class="glass reveal"><b>2026</b><h3>Belajar Web Development</h3><p>Membangun website, mengerjakan Mini Project OOP, dan mendalami database.</p></div>
+    <div class="glass reveal"><b>2027</b><h3>Magang</h3><p>Target: pengalaman kerja nyata di dunia software.</p></div>
+    <div class="glass reveal"><b>Ke depan</b><h3>Software Engineer</h3><p>Membangun produk digital yang berdampak.</p></div>
+  </div>
+</div></section>
+
+<!-- SERTIFIKAT -->
+<section id="certs"><div class="wrap">
+  <h2 class="title"><span class="split">Sertifikat</span></h2>
+  <div class="swiper reveal"><div class="swiper-wrapper" id="cert-list"></div><div class="swiper-pagination"></div></div>
+</div></section>
+
+<!-- KONTAK -->
+<section id="contact"><div class="wrap">
+  <h2 class="title"><span class="split">Ayo berkolaborasi</span></h2>
+  <div class="contact">
+    <form id="form" class="glass reveal">
+      <input name="nama" placeholder="Nama" aria-label="Nama" required>
+      <input name="email" type="email" placeholder="Email" aria-label="Email" required>
+      <textarea name="pesan" placeholder="Pesan" aria-label="Pesan" required></textarea>
+      <button class="btn primary magnetic">Let's Work Together</button>
+    </form>
+    <aside class="glass reveal">
+      <p class="status"><i></i>Terbuka untuk magang dan kerja</p>
+      <h3>Hubungi saya</h3>
+      <p>Punya proyek, peluang magang, atau ingin ngobrol soal teknologi? Kirim pesan, saya balas secepatnya.</p>
+      <div class="soc" data-soc></div>
+    </aside>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <span>© 2026 Azaria Jonathan Manuela</span>
+  <div class="soc" data-soc></div>
+  <a href="#home" class="btn ghost">Kembali ke atas</a>
+</div></footer>
+
+<div id="lb" role="dialog" aria-label="Pratinjau sertifikat"><img alt=""></div>
+
+<!-- Library: GSAP, ScrollTrigger, Lenis, Swiper -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

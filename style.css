@@ -1,0 +1,160 @@
+/* ===== 1. Variabel & reset ===== */
+:root{--bg:#050816;--p:#00E5FF;--s:#8B5CF6;--a:#00FF88;--txt:#e8ecf8;--mut:#8b93b0;--glass:rgba(255,255,255,.05);--bd:rgba(255,255,255,.1);--r:24px;--f:'Space Grotesk',sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html.lenis{scroll-behavior:auto!important}
+body{background:var(--bg);color:var(--txt);font:400 1rem/1.7 Inter,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--p);outline-offset:3px}
+section{position:relative;padding:clamp(4.5rem,11vw,8rem) 0}
+.wrap{width:min(1120px,90%);margin:auto}
+main,header,footer{position:relative;z-index:2}
+#bg{position:fixed;inset:0;z-index:0}
+
+/* Efek kaca (glassmorphism) */
+.glass{background:var(--glass);border:1px solid var(--bd);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:var(--r);box-shadow:0 20px 50px -20px rgba(0,0,0,.6)}
+
+/* ===== 2. Layer global ===== */
+#loader{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-content:center;justify-items:center;gap:1.1rem}
+#loader .logo{font:700 3.2rem var(--f);background:linear-gradient(135deg,var(--p),var(--s));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(0,229,255,.5))}
+.bar{width:220px;height:3px;background:var(--bd);border-radius:9px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--a));box-shadow:0 0 12px var(--p)}
+#pct{font:500 .85rem var(--f);color:var(--mut)}
+#curtain{position:fixed;left:0;top:100%;width:100%;height:100%;z-index:90;background:linear-gradient(135deg,var(--s),var(--p));pointer-events:none}
+#progress{position:fixed;top:0;left:0;width:100%;height:3px;z-index:80;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--p),var(--s),var(--a))}
+/* Kursor panah neon: ujung panah = titik klik */
+#cursor{position:fixed;top:0;left:0;width:26px;height:26px;margin:-3px 0 0 -4px;z-index:99;pointer-events:none;display:none;opacity:0;transition:opacity .3s}
+#cursor.on{opacity:1}
+#cursor svg{width:100%;height:100%;overflow:visible;transform-origin:4px 3px;filter:drop-shadow(0 0 5px rgba(0,229,255,.9)) drop-shadow(0 0 14px rgba(139,92,246,.55));transition:transform .25s cubic-bezier(.2,.9,.3,1.4)}
+#cursor.hover svg{transform:scale(1.4) rotate(-14deg)}
+#cursor.hover path{fill:var(--a)}
+#cursor.down svg{transform:scale(.8)}
+@media(hover:hover) and (pointer:fine){#cursor{display:block}body,a,button{cursor:none}}
+.glow{position:fixed;top:0;left:0;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,.16),rgba(139,92,246,.1) 45%,transparent 70%);z-index:1;pointer-events:none}
+
+/* ===== 3. Navigasi ===== */
+.nav{position:fixed;top:16px;left:0;right:0;margin-inline:auto;z-index:70;width:min(860px,92%);display:flex;justify-content:space-between;align-items:center;padding:.7rem 1.4rem;border-radius:99px}
+.brand{font:700 1.3rem var(--f)}.brand span{color:var(--p)}
+.nav nav{display:flex;gap:1.3rem;font-size:.9rem;color:var(--mut)}
+.nav nav a{transition:color .3s}.nav nav a:hover{color:var(--p)}
+@media(max-width:480px){.nav nav{gap:.8rem;font-size:.8rem}}
+
+/* ===== 4. Tombol ===== */
+.btn{display:inline-block;padding:.9rem 1.8rem;border-radius:99px;font-weight:500;border:1px solid var(--bd);transition:box-shadow .3s,border-color .3s}
+.primary{background:linear-gradient(135deg,var(--p),var(--s));color:#04101c;font-weight:700;border:0;box-shadow:0 0 30px rgba(0,229,255,.35)}
+.primary:hover{box-shadow:0 0 55px rgba(0,229,255,.65)}
+.ghost{background:var(--glass);backdrop-filter:blur(10px);color:var(--txt)}
+.ghost:hover{border-color:var(--p);box-shadow:0 0 24px rgba(0,229,255,.25)}
+
+/* ===== 5. Hero ===== */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:6rem;overflow:hidden}
+.orb{position:absolute;right:-8%;top:18%;width:40vw;height:40vw;max-width:520px;max-height:520px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.4),transparent 65%);filter:blur(30px);z-index:-1}
+.eyebrow{color:var(--a);font-size:1rem}
+.name{font:700 clamp(3.2rem,13vw,9.5rem)/.95 var(--f);letter-spacing:-.04em;margin:.8rem 0 1.2rem}
+.name .line{display:block;overflow:hidden;padding-bottom:.08em}
+.name .ch{display:inline-block}
+.name .line:last-child{color:var(--p);text-shadow:0 0 50px rgba(0,229,255,.45)}
+.typing{font:500 clamp(1.2rem,3vw,1.9rem) var(--f);color:var(--s);min-height:2.4rem}
+.caret{display:inline-block;width:2px;height:1.1em;background:var(--p);margin-left:4px;vertical-align:-.15em;animation:blink 1s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+.lead{color:var(--mut);max-width:520px;margin-top:.8rem}
+.cta{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem}
+.scroll{margin-top:3rem;color:var(--mut);font-size:.8rem}
+.scroll::after{content:"";display:block;width:1px;height:50px;margin-top:.8rem;background:linear-gradient(var(--p),transparent);animation:drop 1.8s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ===== 6. Judul section (text reveal) ===== */
+.title{font:700 clamp(2rem,6vw,3.8rem)/1.08 var(--f);letter-spacing:-.03em;margin-bottom:2.8rem}
+.title .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.12em}
+.title .w i{display:inline-block;font-style:normal}
+
+/* ===== 7. Tentang ===== */
+.about{display:grid;grid-template-columns:1fr 1.3fr;gap:4rem;align-items:center}
+.photo{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:linear-gradient(135deg,var(--s),var(--p));box-shadow:0 0 80px -20px var(--s)}
+.photo span{position:absolute;inset:0;display:grid;place-content:center;font:700 6rem var(--f);color:rgba(255,255,255,.85)}
+.photo img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.photo:hover img{transform:scale(1.08)}
+.about p{color:var(--mut);margin-bottom:1rem;max-width:62ch}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0 2rem}
+.chips span{padding:.4rem 1rem;border-radius:99px;border:1px solid var(--bd);font-size:.85rem;background:var(--glass)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.stats div{padding:1.1rem .6rem;text-align:center;animation:fl 5s ease-in-out infinite}
+.stats div:nth-child(even){animation-delay:-2.5s}
+@keyframes fl{50%{transform:translateY(-8px)}}
+.stats b{display:block;font:700 2rem var(--f);color:var(--p)}
+.stats small{color:var(--mut);font-size:.8rem}
+.about.rev{grid-template-columns:1.3fr 1fr}
+@media(max-width:820px){.about,.about.rev{grid-template-columns:1fr;gap:2.5rem}.photo{max-width:340px}.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== 8. Kartu skill & layanan ===== */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.2rem}
+.card{padding:1.6rem;transition:transform .4s,border-color .4s,box-shadow .4s}
+.card:hover{transform:translateY(-8px);border-color:var(--p);box-shadow:0 0 40px -8px rgba(0,229,255,.45)}
+.card h3{font:600 1.15rem var(--f);margin-bottom:.8rem}
+.card p{color:var(--mut);font-size:.92rem}
+.card em{float:right;font-style:normal;color:var(--p);font-size:.85rem}
+.lvl{height:6px;border-radius:9px;background:var(--bd);overflow:hidden}
+.lvl i{display:block;height:100%;width:0;border-radius:inherit;background:linear-gradient(90deg,var(--p),var(--a));box-shadow:0 0 12px var(--p)}
+
+/* ===== 9. Proyek (efek tilt 3D) ===== */
+.proj{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.6rem}
+.pc{overflow:hidden;will-change:transform;transition:border-color .4s,box-shadow .4s}
+.pc:hover{border-color:var(--p);box-shadow:0 0 50px -10px rgba(0,229,255,.4)}
+.pv{position:relative;height:190px;display:grid;place-content:center;font:700 3rem var(--f);color:rgba(255,255,255,.9);overflow:hidden}
+.pv span{transition:transform .6s}.pc:hover .pv span{transform:scale(1.25)}
+.pv img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.pc:hover .pv img{transform:scale(1.08)}
+.pb{padding:1.5rem}
+.pb h3{font:600 1.3rem var(--f)}
+.pb p{color:var(--mut);font-size:.92rem;margin:.6rem 0 1rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.2rem}
+.tags span{font-size:.75rem;padding:.2rem .7rem;border-radius:99px;background:rgba(139,92,246,.18);color:#c4b5fd}
+.pb .btn{padding:.5rem 1.1rem;font-size:.85rem;margin-right:.5rem}
+
+/* ===== 10. Timeline ===== */
+.tl{position:relative;max-width:720px;margin:auto;padding-left:2.5rem}
+.tl::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--p),var(--s),transparent)}
+.tl>div{position:relative;padding:1.4rem 1.6rem;margin-bottom:1.6rem}
+.tl>div::before{content:"";position:absolute;left:-2.5rem;top:1.9rem;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--p);box-shadow:0 0 16px var(--p)}
+.tl b{color:var(--p);font:700 .95rem var(--f)}
+.tl h3{font:600 1.2rem var(--f);margin:.2rem 0}
+.tl p{color:var(--mut);font-size:.92rem}
+
+/* ===== 11. Sertifikat (Swiper) ===== */
+.swiper{padding:1rem 0 3rem!important}
+.cert{overflow:hidden}
+.ci{aspect-ratio:1.414;overflow:hidden;background:#fff}
+.ci img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.cert:hover .ci img{transform:scale(1.06)}
+.cap{padding:1.1rem 1.4rem 1.3rem}
+.cert small{color:var(--p);font-size:.8rem}
+.cert h3{font:600 1.3rem var(--f)}
+.cert p{color:var(--mut);font-size:.88rem}
+.swiper-pagination-bullet{background:var(--p)!important}
+
+/* ===== 12. Kontak & footer ===== */
+.contact{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem}
+.contact form,.contact aside{padding:2rem}
+input,textarea{width:100%;padding:.9rem 1.1rem;margin-bottom:1rem;border-radius:14px;border:1px solid var(--bd);background:rgba(255,255,255,.04);color:var(--txt);font:inherit;outline:0;transition:border-color .3s,box-shadow .3s}
+input:focus,textarea:focus{border-color:var(--p);box-shadow:0 0 0 4px rgba(0,229,255,.12)}
+textarea{min-height:140px;resize:vertical}
+.contact button{cursor:pointer;font:700 1rem Inter,sans-serif}
+.contact aside h3{font:600 1.5rem var(--f);margin-bottom:.6rem}
+.contact aside p{color:var(--mut)}
+.status{display:flex;align-items:center;gap:.6rem;color:var(--a)!important;font-size:.9rem;margin-bottom:1rem}
+.status i{width:9px;height:9px;border-radius:50%;background:var(--a);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,255,136,.6)}100%{box-shadow:0 0 0 12px transparent}}
+.soc{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.4rem}
+.soc a{width:46px;height:46px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--bd);background:var(--glass);transition:.3s}
+.soc a:hover{border-color:var(--p);color:var(--p);box-shadow:0 0 24px rgba(0,229,255,.4);transform:translateY(-4px)}
+.soc svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+footer{padding:2.2rem 0;border-top:1px solid var(--bd)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;color:var(--mut);font-size:.9rem}
+footer .soc{margin:0}
+footer .btn{padding:.6rem 1.3rem}
+@media(max-width:820px){.contact{grid-template-columns:1fr}}
+
+/* ===== 13. Lightbox sertifikat ===== */
+#lb{position:fixed;inset:0;z-index:98;display:none;place-items:center;padding:4vw;background:rgba(5,8,22,.92);backdrop-filter:blur(8px)}
+#lb.open{display:grid}
+#lb img{max-width:100%;max-height:100%;border-radius:12px;box-shadow:0 0 80px rgba(0,229,255,.25)}
